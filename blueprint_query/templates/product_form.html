@@ -12,20 +12,13 @@
               color      : green
       }
     </style>
-    <link  rel="stylesheet" href = "/static/main.css">
 </head>
 <body>
   <h2 align="center"> Введите название продукта</h2>
     <div align = center>
-        <form  action="", method ="POST">
-            <select name=product_name placeholder = product_name id= "product">
-                <option value="Соль">Соль</option>
-
-                <option value="Сок">Сок</option>
-
-                <option value="Кофе">Кофе</option>
-
-            </select>
+        <form action="", method ="POST">
+            <label for="product">Введите название продукта</label>
+            <input name = product_name id="product" type = text placeholder = product_name>
             <br><br>
             <input type = submit value ="Отправить">
         </form>
