@@ -23,6 +23,7 @@ def start_auth():
     else:
         login = request.form.get('login')
         password = request.form.get('password')
+        print(login, password)
         if login:
             user_info = define_user(login, password)
             if user_info:

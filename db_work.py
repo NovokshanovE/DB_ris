@@ -37,9 +37,10 @@ def call_proc(dbconfig: dict, proc_name: str, *args):
     with DBContextManager(dbconfig) as cursor:
         if cursor is None:
             raise ValueError('Курсор не создан')
-        param_tuple = []
+        param_list = []
         for arg in args:
-            param_tuple.append(arg)
-        print(param_tuple)
-        res = cursor.callproc(proc_name, param_tuple)
+            print('arg=', arg)
+            param_list.append(arg)
+        print('param_list = ', param_list) #нужно сделать проверку на повторение отчета в обработчик
+        res = cursor.callproc(proc_name, param_list)
     return res
