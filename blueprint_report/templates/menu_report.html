@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Menu report</title>
+    <style type="text/css">
+        .name_list{
+            font-size: 12pt;
+            color: green;
+            display: inline-block;
+            width: 500px;
+            text-align: left
+        }
+
+    </style>
 </head>
 <body>
  <h1 align="center"> Меню отчетов </h1> <br><br>
@@ -12,7 +22,7 @@
             <label for="create_rep" class="named_list"> {{report['rep_name']}}</label>
             <input type="submit" name="create_rep" id="create_rep" value="Создать">
             <input type="submit" name="view_rep"  value="Смотреть">
-            <input type="submit" name="rep_id"  value={{report['rep_id']}}>
+            <input type="hidden" name="rep_id"  value={{report['rep_id']}}>
         </form>
       {% endfor %}
     </center>
