@@ -1,0 +1,1 @@
+INSERT INTO `supermarket`.`product` (`prod_id`, `prod_name`, `prod_price`, `prod_measure`) VALUES ( '$new_name', '$new_price', '1');

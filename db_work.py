@@ -44,3 +44,12 @@ def call_proc(dbconfig: dict, proc_name: str, *args):
         print('param_list = ', param_list) #нужно сделать проверку на повторение отчета в обработчик
         res = cursor.callproc(proc_name, param_list)
     return res
+
+def insert(dbconfig: dict, _sql:str):
+    with DBContextManager(dbconfig) as cursor:
+        if cursor is None:
+            raise ValueError('Курсор не создан')
+
+        res = cursor.execute(_sql)
+
+        return res

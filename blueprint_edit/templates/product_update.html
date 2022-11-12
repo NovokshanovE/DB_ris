@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 align="center"> Введите изменение в описание продукта</h2>
+<center>
+
+
+    <form action="" method="post">
+        <label for = "prod_name" class="named_list">Название продукта</label>
+        <input type="text" name="prod_name" id="prod_name" value="{{product['prod_name']}}">
+
+        <label for = "prod_price" class="named_price">Цена продукта</label>
+        <input type="text" name="prod_price" value="prod_price" value="{{product['prod_price']}}"> Удалить</button>
+
+        <input type="hidden" name="prod_id" value="{{product['prod_id']}}">
+        <button type="submit" name="action" value="update_prod"> Обновить продукт </button>
+    </form>
+
+</center>
+</body>
+</html>
