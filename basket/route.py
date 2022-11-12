@@ -3,7 +3,9 @@ from flask import Blueprint, request, render_template, current_app, redirect, ur
 from access import login_required, group_required, session
 from db_work import select, select_dict
 from sql_provider import SQLProvider
-import db_context_manager
+from db_context_manager import DBContextManager
+
+
 
 blueprint_basket = Blueprint('bp_basket', __name__, template_folder='templates')
 provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
@@ -59,3 +61,28 @@ def save_order():
 
 def save_order_list(dbconfig: dict, user_id: int, current_basket: dict):
     with DBContextManager(dbconfig) as cursor:
+        if cursor is None:
+            raise ValueError('Курсор не создан')
+        _sql1 = provider.get('insert_order.sql', user_id=user_id, order_date='2022-11-01')
+        result1 = cursor.execute(_sql1)
+        if result1 == 1:
+            _sql2 = provider.get('select_order.sql', user_id=user_id)
+            cursor.execute(_sql2)
+            order_id = cursor.fetchall()[0][0]
+            print("order_id=", order_id)
+            if order_id:
+                for key in current_basket:
+                    print(key, current_basket[key]['amount'])
+                    prod_amount = current_basket
+                    _sql3 = provider.get('insert_order_list.sql', order_id=order_id, prod_id=key, prod_amount=prod_amount)
+                    cursor.execute(_sql3)
+                return order_id
+
+
+
+
+@blueprint_basket.route('/clear_basket')
+def clear_basket():
+    if 'basket' in session:
+        session.pop('basket')
+    return redirect(url_for('bp_order.order_index'))
